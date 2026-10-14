@@ -1,0 +1,7 @@
+<ion-content [fullscreen]="true"><div class="page"><div class="brand"><div class="store"><ion-icon name="storefront-outline"></ion-icon></div><b>Abarrotes</b></div>
+<section class="card"><h1>Crear cuenta</h1><p>Completa tus datos para registrarte</p>
+<label>Nombre de usuario</label><div class="field"><ion-icon name="person-outline"></ion-icon><input [(ngModel)]="usuario" placeholder="Elige un nombre de usuario"></div>
+<label>Contraseña</label><div class="field"><ion-icon name="lock-closed-outline"></ion-icon><input [(ngModel)]="contrasena" [type]="ver?'text':'password'" placeholder="••••••••"><button class="eye" type="button" (click)="ver=!ver"><ion-icon [name]="ver?'eye-off-outline':'eye-outline'"></ion-icon></button></div>
+<label>Género</label><div class="field"><ion-icon name="person-outline"></ion-icon><select [(ngModel)]="genero"><option value="" disabled>Selecciona una opción</option><option>Femenino</option><option>Masculino</option><option>Prefiero no decirlo</option></select></div>
+<div class="error" [class.ok]="exito" *ngIf="mensaje">{{mensaje}}</div><button class="primary" (click)="registrar()"><ion-icon name="person-add-outline"></ion-icon>Registrarse</button>
+<div class="line"></div><p class="small">¿Ya tienes cuenta?</p><a routerLink="/login">Iniciar sesión</a></section></div></ion-content>

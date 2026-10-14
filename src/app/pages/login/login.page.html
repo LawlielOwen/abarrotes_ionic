@@ -1,0 +1,9 @@
+<ion-content [fullscreen]="true">
+<div class="page"><div class="brand"><div class="store"><ion-icon name="storefront-outline"></ion-icon></div><b>Abarrotes</b></div>
+<section class="card"><h1>Iniciar sesión</h1><p>Ingresa para comenzar a vender</p>
+<label>Nombre de usuario</label><div class="field"><ion-icon name="person-outline"></ion-icon><input [(ngModel)]="usuario" placeholder="Escribe tu usuario"></div>
+<label>Contraseña</label><div class="field"><ion-icon name="lock-closed-outline"></ion-icon><input [(ngModel)]="contrasena" [type]="ver?'text':'password'" placeholder="••••••••"><button class="eye" type="button" (click)="ver=!ver"><ion-icon [name]="ver?'eye-off-outline':'eye-outline'"></ion-icon></button></div>
+<div class="error" *ngIf="mensaje">{{mensaje}}</div>
+<button class="primary" (click)="ingresar()"><ion-icon name="arrow-forward-outline"></ion-icon>Ingresar</button>
+<div class="line"></div><p class="small">¿Aún no tienes cuenta?</p><a routerLink="/registro">Registro rápido →</a>
+</section></div></ion-content>

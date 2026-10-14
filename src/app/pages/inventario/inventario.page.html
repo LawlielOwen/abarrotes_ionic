@@ -1,0 +1,89 @@
+<ion-content>
+  <main class="wrap">
+    <a routerLink="/inicio" class="volver">
+      <span class="flecha">←</span>
+      <span>Inicio</span>
+    </a>
+
+    <section class="encabezado">
+      <div>
+        <h1>Inventario</h1>
+        <p>Consulta el catálogo y controla el stock de cada producto.</p>
+      </div>
+
+      <div class="buscador">
+        <span>⌕</span>
+        <input
+          type="text"
+          [(ngModel)]="busqueda"
+          placeholder="Buscar por nombre o código"
+        />
+      </div>
+    </section>
+
+    <p *ngIf="mensaje" class="mensaje" [class.ok]="ok">
+      {{ mensaje }}
+    </p>
+
+    <section class="tabla-contenedor">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Código</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Stock actual</th>
+            <th>Movimiento</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let producto of productosFiltrados">
+            <td>
+              <div class="producto">
+                <div class="imagen">
+                  <img [src]="producto.imagen" [alt]="producto.nombre" />
+                </div>
+                <strong>{{ producto.nombre }}</strong>
+              </div>
+            </td>
+
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>${{ producto.precio.toFixed(2) }}</td>
+
+            <td>
+              <span class="stock" [class.bajo]="producto.existencia <= 5">
+                {{ producto.existencia }} unidades
+              </span>
+            </td>
+
+            <td>
+              <div class="movimiento">
+                <input
+                  type="number"
+                  min="1"
+                  [(ngModel)]="cantidades[producto.id]"
+                  placeholder="Cant."
+                />
+
+                <button class="agregar" (click)="agregarStock(producto)">
+                  + Añadir
+                </button>
+
+                <button class="reducir" (click)="reducirStock(producto)">
+                  − Reducir
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="vacio" *ngIf="productosFiltrados.length === 0">
+      No se encontraron productos.
+    </div>
+  </main>
+</ion-content>

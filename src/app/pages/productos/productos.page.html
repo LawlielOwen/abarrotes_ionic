@@ -1,0 +1,147 @@
+<ion-content>
+  <main class="wrap">
+    <a routerLink="/inicio" class="volver">
+      <span class="flecha">←</span>
+      <span>Inicio</span>
+    </a>
+
+    <section class="encabezado">
+      <div class="titulo-seccion">
+        <h1>Productos</h1>
+        <p>Agrega, modifica o elimina productos del catálogo.</p>
+      </div>
+
+      <div class="acciones-superiores">
+        <div class="buscador">
+          <span class="icono-buscar">⌕</span>
+          <input
+            type="text"
+            placeholder="Buscar por nombre o código"
+            [(ngModel)]="busqueda"
+          />
+        </div>
+
+        <button class="btn-nuevo" (click)="nuevoProducto()">
+          + Nuevo producto
+        </button>
+      </div>
+    </section>
+
+    <p *ngIf="mensaje" class="mensaje" [class.ok]="ok">
+      {{ mensaje }}
+    </p>
+
+    <section class="formulario-card" *ngIf="mostrarFormulario">
+      <div class="formulario-titulo">
+        <div>
+          <h2>{{ editando ? 'Modificar producto' : 'Agregar producto' }}</h2>
+          <p>Completa la información del producto.</p>
+        </div>
+
+        <button class="cerrar" (click)="cancelar()">×</button>
+      </div>
+
+      <div class="formulario-grid">
+        <label>
+          Código
+          <input [(ngModel)]="formulario.codigo" placeholder="Ej. 7501009" />
+        </label>
+
+        <label>
+          Nombre
+          <input [(ngModel)]="formulario.nombre" placeholder="Nombre del producto" />
+        </label>
+
+        <label>
+          Categoría
+          <input [(ngModel)]="formulario.categoria" placeholder="Despensa, bebidas..." />
+        </label>
+
+        <label>
+          Precio
+          <input [(ngModel)]="formulario.precio" type="number" min="0" />
+        </label>
+
+        <label>
+          Existencia inicial
+          <input [(ngModel)]="formulario.existencia" type="number" min="0" />
+        </label>
+
+        <label>
+          Imagen
+          <select [(ngModel)]="formulario.imagen">
+            <option value="assets/productos/leche.svg">Leche</option>
+            <option value="assets/productos/pan.svg">Pan</option>
+            <option value="assets/productos/arroz.svg">Arroz</option>
+            <option value="assets/productos/frijoles.svg">Frijoles</option>
+            <option value="assets/productos/huevos.svg">Huevos</option>
+            <option value="assets/productos/refresco.svg">Refresco</option>
+            <option value="assets/productos/aceite.svg">Aceite</option>
+            <option value="assets/productos/galletas.svg">Galletas</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="formulario-botones">
+        <button class="btn-cancelar" (click)="cancelar()">
+          Cancelar
+        </button>
+
+        <button class="btn-guardar" (click)="guardar()">
+          {{ editando ? 'Guardar cambios' : 'Agregar producto' }}
+        </button>
+      </div>
+    </section>
+
+    <section class="productos-grid">
+      <article
+        class="producto-card"
+        *ngFor="let producto of productosFiltrados"
+      >
+        <div class="producto-imagen">
+          <div class="circulo-imagen">
+            <img [src]="producto.imagen" [alt]="producto.nombre" />
+          </div>
+        </div>
+
+        <span class="categoria">
+          {{ producto.categoria }}
+        </span>
+
+        <div class="producto-titulo">
+          <h2>{{ producto.nombre }}</h2>
+        </div>
+
+        <p class="codigo">
+          Código: {{ producto.codigo }}
+        </p>
+
+        <div class="producto-datos">
+          <p class="precio">
+            ${{ producto.precio.toFixed(2) }}
+          </p>
+
+          <p class="existencia">
+            Existencia: {{ producto.existencia }}
+          </p>
+        </div>
+
+        <div class="botones-producto">
+          <button class="btn-editar" (click)="editarProducto(producto)">
+            Modificar
+          </button>
+
+          <button class="btn-eliminar" (click)="eliminarProducto(producto)">
+            Eliminar
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <div class="sin-productos" *ngIf="productosFiltrados.length === 0">
+      <div class="sin-productos-icono">📦</div>
+      <h2>No se encontraron productos</h2>
+      <p>Intenta buscar otro nombre o código.</p>
+    </div>
+  </main>
+</ion-content>

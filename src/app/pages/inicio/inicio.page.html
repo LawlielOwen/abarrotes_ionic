@@ -1,0 +1,7 @@
+<ion-content [fullscreen]="true"><main class="inicio"><header><div class="marca"><div class="logo"><ion-icon name="storefront-outline"></ion-icon></div><div><b>Abarrotes</b><span>Punto de venta</span></div></div><button (click)="salir()"><ion-icon name="log-out-outline"></ion-icon>Salir</button></header>
+<section class="hero"><div><span class="tag">Panel principal</span><h1>Hola, {{usuario}}</h1><p>Selecciona el módulo que necesitas utilizar.</p></div></section>
+<h2>Módulos del sistema</h2><section class="modulos">
+<a routerLink="/inventario" class="modulo"><div class="icono"><ion-icon name="archive-outline"></ion-icon></div><div><h3>Inventario</h3><p>Consulta el catálogo y aumenta o reduce el stock.</p></div><ion-icon class="flecha" name="chevron-forward-outline"></ion-icon></a>
+<a routerLink="/productos" class="modulo"><div class="icono"><ion-icon name="pricetags-outline"></ion-icon></div><div><h3>Productos</h3><p>Agrega, modifica y elimina productos del catálogo.</p></div><ion-icon class="flecha" name="chevron-forward-outline"></ion-icon></a>
+<a routerLink="/ventas" class="modulo destacado"><div class="icono"><ion-icon name="cart-outline"></ion-icon></div><div><h3>Ventas</h3><p>Punto de venta, escáner y cobro en efectivo.</p></div><ion-icon class="flecha" name="chevron-forward-outline"></ion-icon></a>
+</section></main></ion-content>
